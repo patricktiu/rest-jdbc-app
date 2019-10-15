@@ -1,2 +1,4 @@
 src/main/liberty/config/resources/postgresql.jar
 target/
+build/
+.gradle/

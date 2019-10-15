@@ -65,7 +65,7 @@
         </dependency>
         <dependency>
             <groupId>org.microshed</groupId>
-            <artifactId>microshed-testing-liberty</artifactId>
+            <artifactId>microshed-testing-testcontainers</artifactId>
             <version>0.4.1</version>
             <scope>test</scope>
         </dependency>
@@ -95,7 +95,7 @@
                           <outputDirectory>src/main/liberty/config/resources</outputDirectory>
                           <destFileName>postgresql.jar</destFileName>
                         </artifactItem>
-                    </artifactItems>
+${version.maven-surefire-plugin}                    </artifactItems>
                     <outputDirectory>${project.build.directory}/wars</outputDirectory>
                     <overWriteReleases>false</overWriteReleases>
                 </configuration>
@@ -122,7 +122,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-failsafe-plugin</artifactId>
-                <version>3.0.0-M1</version>
+                <version>${version.maven-failsafe-plugin}</version>
                 <executions>
                     <execution>
                         <phase>integration-test</phase>
