@@ -11,9 +11,14 @@
     </featureManager>
 
 	<dataSource id="DefaultDataSource">
-    	<jdbcDriver libraryRef="postgresLib"/>
-		<properties serverName="${POSTGRES_HOSTNAME}" portNumber="${POSTGRES_PORT}" user="test" password="test" databaseName="testdb"/>
-	</dataSource>
+        <jdbcDriver libraryRef="postgresLib"/>
+        <connectionManager agedTimeout="5s" reapTime="5s" />
+        <properties serverName="${PG_HOST}"
+                    portNumber="${PG_PORT}"
+                    user="${PG_USER}"
+                    password="${PG_PASS}"
+                    databaseName="${PG_DBNAME}"/>
+        </dataSource>
 	
 	<library id="postgresLib">
 		<file name="${server.config.dir}/resources/postgresql.jar"/>

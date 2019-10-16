@@ -25,17 +25,23 @@ import org.testcontainers.junit.jupiter.Container;
 
 public class AppContainerConfig implements SharedContainerConfiguration {
 
-	@Container
-	public static PostgreSQLContainer<?> postgres = new PostgreSQLContainer<>()
-					.withNetworkAliases("testpostgres")
-					.withDatabaseName("testdb");
+    @Container
+    public static PostgreSQLContainer<?> postgres = new PostgreSQLContainer<>()
+                    .withDatabaseName("testdb")
+                    .withNetworkAliases("postgres")
+                    .withUsername("testuser")
+                    .withPassword("testpass")
+                    .withExposedPorts(5432)
+                    .withInitScript("init.sql");
 	
     @Container
     public static MicroProfileApplication app = new MicroProfileApplication()
-                    .withEnv("POSTGRES_HOSTNAME", "testpostgres")
-                    .withEnv("POSTGRES_PORT", "5432")
-                    .withAppContextRoot("/myservice");
-                    //.dependsOn(postgres); intermittent bugs, see: https://github.com/testcontainers/testcontainers-java/issues/1722
+                    .withAppContextRoot("/myservice")
+                    .withEnv("PG_HOST", "postgres")
+                    .withEnv("PG_PORT", "" + PostgreSQLContainer.POSTGRESQL_PORT)
+                    .withEnv("PG_USER", postgres.getUsername())
+                    .withEnv("PG_PASS", postgres.getPassword())
+                    .withEnv("PG_DBNAME", postgres.getDatabaseName());
     
     @Override
     public void startContainers() {
