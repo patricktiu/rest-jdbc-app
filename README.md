@@ -11,11 +11,15 @@ https://medium.com/@wkrzywiec/database-in-a-docker-container-how-to-start-and-wh
  export PG_PORT=5432
  export PG_USER=postgres
  export PG_PASS=postgres
- export PG_DBNAME=MYDB
+ export PG_DBNAME=postgres
 ```
 maven package liberty:run
 
 ### Open openapi ui in a browser
 http://localhost:9080/openapi/ui/
 
+### Call the REST endpoint
+http://localhost:9080/myservice/
+
+### Open a local DB tool (https://dbeaver.io/) 
 
